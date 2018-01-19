@@ -2,7 +2,6 @@ package fusion.neo.androidkotlinneo.presenter.implements
 
 import android.app.Activity
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -50,7 +49,7 @@ class SplashPresenter : SplashInterface {
                     alert.setTitle(activity.getString(R.string.dialog_warning))
                     alert.setMessage(activity.getString(R.string.dialog_permission))
                     alert.setCancelable(false)
-                    alert.setPositiveButton("Yes") { dialog, which ->
+                    alert.setPositiveButton(activity.getString(R.string.dialog_yes)) { _, _ ->
                         // TODO Auto-generated method stub
                         activity.finish()
                         activity.startActivity(activity.intent)
@@ -86,11 +85,9 @@ class SplashPresenter : SplashInterface {
 
     private fun hasPermissions(context: Context?, vararg permissions: String): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null) {
-            for (permission in permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false
-                }
-            }
+            permissions
+                    .filter { ActivityCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED }
+                    .forEach { return false }
         }
         return true
     }

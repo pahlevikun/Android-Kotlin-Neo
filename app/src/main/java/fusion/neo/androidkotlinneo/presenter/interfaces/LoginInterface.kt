@@ -11,6 +11,6 @@ interface LoginInterface {
     fun performLogin(context: Activity, email: String, password: String,
                      callback: ServerCallback)
 
-    fun saveToDB(activity: Activity, response: String)
+    fun saveSession(activity: Activity, response: String) : Boolean
     fun isSuccess(response: String): Boolean
 }

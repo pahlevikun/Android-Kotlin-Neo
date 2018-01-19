@@ -11,7 +11,6 @@ import retrofit2.http.*
  */
 
 interface BaseApiService {
-    @FormUrlEncoded
     @POST(APIConfig.AUTH)
     fun makeLogin(@Header("Content-Type") type: String,
                   @Body data: Login): Call<ResponseBody>

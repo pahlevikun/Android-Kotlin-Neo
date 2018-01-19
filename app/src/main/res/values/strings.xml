@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Android Kotlin Neo</string>
+
+    <string name="sharedAccount">sharedAccount</string>
+    <string name="accountSession">accountSession</string>
+    <string name="accountToken">accountToken</string>
+
+    <string name="progress_loading">Please Wait</string>
+    <string name="progress_login">Now login...</string>
+
+    <string name="toast_login_fill">Please fill correctly!</string>
+    <string name="toast_login_failed">Login Failed!</string>
+    <string name="toast_login_connection">Please check connection!</string>
+
+    <string name="app_login_double_back">Double click for exit!</string>
 </resources>

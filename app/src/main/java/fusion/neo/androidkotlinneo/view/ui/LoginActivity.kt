@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun hideDialog() {
-        if (loading!!.isShowing())
+        if (loading!!.isShowing)
             loading!!.dismiss()
     }
 

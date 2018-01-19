@@ -10,21 +10,22 @@ class SplashActivity : AppCompatActivity() {
     private var resume = false
     private var presenter: SplashPresenter? = null
 
-    private val PERMISSIONS = arrayOf(android.Manifest.permission.INTERNET,
-            android.Manifest.permission.ACCESS_NETWORK_STATE)
+    private val permissions = arrayOf(android.Manifest.permission.INTERNET,
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         presenter = SplashPresenter()
-        presenter!!.checkPermission(this, PERMISSIONS)
+        presenter!!.checkPermission(this, permissions)
 
     }
 
     public override fun onResume() {
         super.onResume()
         if (resume) {
-            presenter!!.checkPermission(this, PERMISSIONS)
+            presenter!!.checkPermission(this, permissions)
         }
         resume = true
     }

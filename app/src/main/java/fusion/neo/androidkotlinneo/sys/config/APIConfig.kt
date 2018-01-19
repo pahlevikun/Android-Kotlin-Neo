@@ -12,5 +12,6 @@ class APIConfig {
 
         const val TAG = "LOG TAG HASIL"
         const val REQUEST_PERMISSION = 123
+        const val REQUEST_GALLERY_CODE = 234
     }
 }

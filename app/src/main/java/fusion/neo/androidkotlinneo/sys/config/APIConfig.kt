@@ -9,5 +9,8 @@ class APIConfig {
         const val AUTH = "/auth/login"
         const val DATA = "/data"
         const val POST_IMAGE = "/data/create"
+
+        const val TAG = "LOG TAG HASIL"
+        const val REQUEST_PERMISSION = 123
     }
 }

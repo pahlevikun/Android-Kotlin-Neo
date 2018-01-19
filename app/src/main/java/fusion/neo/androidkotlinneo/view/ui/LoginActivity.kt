@@ -39,11 +39,14 @@ class LoginActivity : AppCompatActivity() {
                     override fun onSuccess(response: String) {
                         hideDialog()
                         if (presenter.isSuccess(response)) {
-                            presenter.saveToDB(this@LoginActivity, response)
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                            finish()
+                            if (!presenter.saveSession(this@LoginActivity, response)) {
+                                Snackbar.make(coordinatorLogin, getString(R.string.toast_login_failed_session), Snackbar.LENGTH_SHORT).show()
+                            } else {
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }
 
@@ -78,4 +81,6 @@ class LoginActivity : AppCompatActivity() {
         if (loading!!.isShowing())
             loading!!.dismiss()
     }
+
+
 }

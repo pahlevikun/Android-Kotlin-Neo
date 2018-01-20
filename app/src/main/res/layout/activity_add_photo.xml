@@ -61,6 +61,7 @@
                             app:srcCompat="@drawable/ic_vect_photo" />
 
                         <TextView
+                            android:id="@+id/textViewAdd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"

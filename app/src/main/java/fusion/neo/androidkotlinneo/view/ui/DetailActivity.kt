@@ -32,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
         buttonUpload.visibility = View.GONE
         editTextSummary.isEnabled = false
         editTextDetail.isEnabled = false
+        textViewAdd.visibility = View.GONE
 
         val id = intent.extras.getInt(getString(R.string.intentExtraIdMessage), 0)
         val sessionManager = SessionManager(this@DetailActivity)

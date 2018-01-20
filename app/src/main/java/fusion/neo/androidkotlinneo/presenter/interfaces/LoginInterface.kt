@@ -13,4 +13,6 @@ interface LoginInterface {
 
     fun saveSession(activity: Activity, response: String) : Boolean
     fun isSuccess(response: String): Boolean
+
+    fun parsingMessage(response: String): String
 }

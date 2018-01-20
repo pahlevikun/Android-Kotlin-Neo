@@ -42,14 +42,19 @@ class DetailActivity : AppCompatActivity() {
                     override fun onSuccess(response: String) {
                         hideDialog()
                         val data = presenter.parsingData(response)
-                        editTextDetail.setText(data.detail)
-                        editTextSummary.setText(data.summary)
+                        if(data.detail.length<2||data.summary.length<2){
+                            editTextDetail.setText("No Detail")
+                            editTextSummary.setText("No Summary")
+                        }else{
+                            editTextDetail.setText(data.detail)
+                            editTextSummary.setText(data.summary)
+                        }
                         Picasso.with(this@DetailActivity)
                                 .load(data.image)
                                 .into(imageViewAdd)
                     }
 
-                    override fun onFailed(isFailed: Boolean) {
+                    override fun onFailed(isFailed: String) {
                         hideDialog()
                         finish()
                         Toast.makeText(this@DetailActivity, getString(R.string.toast_data_load_failed),

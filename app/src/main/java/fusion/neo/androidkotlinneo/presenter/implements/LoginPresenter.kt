@@ -17,30 +17,37 @@ import retrofit2.Callback
  */
 class LoginPresenter : LoginInterface {
 
+    override fun parsingMessage(response: String): String {
+        return try {
+            val jObj = JSONObject(response)
+            jObj.getString("message")
+        } catch (e: Exception) {
+            "Failed Parsing!"
+        }
+    }
+
     override fun checkPassword(email: String, password: String): Boolean {
         return (email.isEmpty() || password.isEmpty())
     }
 
     override fun isSuccess(response: String): Boolean {
-        var success = true
-        try {
+        return try {
             val jObj = JSONObject(response)
-            success = jObj.getBoolean("success")
+            jObj.has("access_token")
         } catch (e: Exception) {
-
+            false
         }
-        return success
     }
 
-    override fun saveSession(activity: Activity, response: String) : Boolean {
-        try {
+    override fun saveSession(activity: Activity, response: String): Boolean {
+        return try {
             val jObj = JSONObject(response)
             val accessToken = jObj.getString("access_token")
             val session = SessionManager(activity)
             session.startSession(accessToken)
-            return true
+            true
         } catch (e: Exception) {
-            return false
+            false
         }
     }
 
@@ -53,12 +60,15 @@ class LoginPresenter : LoginInterface {
                     override fun onResponse(call: Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
                         if (response.isSuccessful) {
                             callback.onSuccess(response.body()!!.string())
+                        }else{
+                            callback.onFailed(response.body()!!.string())
                         }
                     }
 
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                         callback.onFailure(t)
                     }
+
                 })
     }
 

@@ -69,7 +69,7 @@ class AddPhotoActivity : AppCompatActivity() {
                                 }
                             }
 
-                            override fun onFailed(isFailed: Boolean) {
+                            override fun onFailed(isFailed: String) {
                                 hideDialog()
                                 Toast.makeText(this@AddPhotoActivity,
                                         getString(R.string.toast_upload_photo_failed),
@@ -112,7 +112,7 @@ class AddPhotoActivity : AppCompatActivity() {
                 finish()
             }
 
-            override fun onFailed(isFailed: Boolean) {
+            override fun onFailed(isFailed: String) {
                 hideDialog()
             }
 

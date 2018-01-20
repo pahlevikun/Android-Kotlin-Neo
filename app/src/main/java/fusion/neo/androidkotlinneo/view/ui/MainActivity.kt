@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 setAdapter(arrayList)
             }
 
-            override fun onFailed(isFailed: Boolean) {
+            override fun onFailed(isFailed: String) {
                 hideDialog()
                 Toast.makeText(this@MainActivity, getString(R.string.toast_data_load_failed),
                         Toast.LENGTH_SHORT).show()

@@ -25,7 +25,7 @@ interface BaseApiService {
     fun postPhoto(@Header("Access-Token") token: String,
                   @Part file: MultipartBody.Part): Call<ResponseBody>
 
-    @POST(APIConfig.POST_IMAGE + "/{id}" + APIConfig.UPDATE_IMAGE)
+    @POST(APIConfig.DATA + "/{id}" + APIConfig.UPDATE_IMAGE)
     fun updatePhoto(@Header("Content-Type") type: String,
                     @Header("Access-Token") token: String,
                     @Body data: Detail,

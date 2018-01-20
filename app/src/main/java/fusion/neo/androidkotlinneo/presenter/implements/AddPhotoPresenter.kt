@@ -65,7 +65,7 @@ class AddPhotoPresenter : AddPhotoInterface {
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
                         if (response.isSuccessful) {
-                            callback.onSuccess(response.toString())
+                            callback.onSuccess(response.body()!!.string())
                         } else {
                             callback.onFailed(true)
                         }

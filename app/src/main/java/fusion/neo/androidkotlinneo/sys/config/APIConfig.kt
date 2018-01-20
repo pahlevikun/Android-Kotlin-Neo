@@ -8,7 +8,8 @@ class APIConfig {
         const val END_POINT = "https://test-mobile.neo-fusion.com"
         const val AUTH = "/auth/login"
         const val DATA = "/data"
-        const val POST_IMAGE = "/data/create"
+        const val POST_IMAGE = "/create"
+        const val UPDATE_IMAGE = "/update"
 
         const val TAG = "LOG TAG HASIL"
         const val REQUEST_PERMISSION = 123

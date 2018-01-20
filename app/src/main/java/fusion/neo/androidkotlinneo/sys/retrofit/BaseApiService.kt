@@ -1,5 +1,6 @@
 package com.beehapps.e_dokterkudokter.system.retrofit
 
+import fusion.neo.androidkotlinneo.model.Detail
 import fusion.neo.androidkotlinneo.model.Login
 import fusion.neo.androidkotlinneo.sys.config.APIConfig
 import okhttp3.MultipartBody
@@ -17,11 +18,16 @@ interface BaseApiService {
                   @Body data: Login): Call<ResponseBody>
 
     @GET(APIConfig.DATA)
-    fun getListPatient(@Header("Access-Token") token: String): Call<ResponseBody>
-
+    fun getList(@Header("Access-Token") token: String): Call<ResponseBody>
 
     @Multipart
-    @POST(APIConfig.POST_IMAGE)
+    @POST(APIConfig.DATA + APIConfig.POST_IMAGE)
     fun postPhoto(@Header("Access-Token") token: String,
-                  @Part file : MultipartBody.Part): Call<ResponseBody>
+                  @Part file: MultipartBody.Part): Call<ResponseBody>
+
+    @POST(APIConfig.POST_IMAGE + "/{id}" + APIConfig.UPDATE_IMAGE)
+    fun updatePhoto(@Header("Content-Type") type: String,
+                    @Header("Access-Token") token: String,
+                    @Body data: Detail,
+                    @Path("id") id: String): Call<ResponseBody>
 }

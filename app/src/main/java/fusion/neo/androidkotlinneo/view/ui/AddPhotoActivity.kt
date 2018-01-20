@@ -2,6 +2,7 @@
 
 package fusion.neo.androidkotlinneo.view.ui
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -24,6 +25,7 @@ import java.io.File
 
 class AddPhotoActivity : AppCompatActivity() {
 
+    private var loading: ProgressDialog? = null
     private var file: File? = null
     private var fileToUpload: MultipartBody.Part? = null
     private val presenter = AddPhotoPresenter()
@@ -46,6 +48,8 @@ class AddPhotoActivity : AppCompatActivity() {
         buttonUpload.setOnClickListener {
             if (!presenter.isEmpty(file!!, editTextSummary.text.toString(),
                     editTextDetail.text.toString())) {
+                loading = ProgressDialog.show(this, getString(R.string.progress_loading),
+                        getString(R.string.progress_updata), false, false)
                 presenter.uploadPhoto(this@AddPhotoActivity, fileToUpload!!,
                         object : ServerCallback {
                             override fun onSuccess(response: String) {
@@ -57,6 +61,7 @@ class AddPhotoActivity : AppCompatActivity() {
                                             Detail(editTextSummary.text.toString(),
                                                     editTextDetail.text.toString()))
                                 } catch (e: Exception) {
+                                    hideDialog()
                                     Toast.makeText(this@AddPhotoActivity,
                                             getString(R.string.toast_upload_photo_failed),
                                             Toast.LENGTH_SHORT).show()
@@ -65,6 +70,7 @@ class AddPhotoActivity : AppCompatActivity() {
                             }
 
                             override fun onFailed(isFailed: Boolean) {
+                                hideDialog()
                                 Toast.makeText(this@AddPhotoActivity,
                                         getString(R.string.toast_upload_photo_failed),
                                         Toast.LENGTH_SHORT).show()
@@ -72,6 +78,7 @@ class AddPhotoActivity : AppCompatActivity() {
                             }
 
                             override fun onFailure(throwable: Throwable) {
+                                hideDialog()
                                 Toast.makeText(this@AddPhotoActivity, throwable.toString(),
                                         Toast.LENGTH_SHORT).show()
                                 Log.d(APIConfig.TAG,"FAILURE "+throwable)
@@ -96,7 +103,9 @@ class AddPhotoActivity : AppCompatActivity() {
 
     fun postUpdate(id: String, detail: Detail) {
         presenter.updatePhoto(this@AddPhotoActivity, detail, id, object : ServerCallback {
+
             override fun onSuccess(response: String) {
+                hideDialog()
                 val intent = Intent(this@AddPhotoActivity, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
@@ -104,13 +113,18 @@ class AddPhotoActivity : AppCompatActivity() {
             }
 
             override fun onFailed(isFailed: Boolean) {
-
+                hideDialog()
             }
 
             override fun onFailure(throwable: Throwable) {
-
+                hideDialog()
             }
         })
+    }
+
+    private fun hideDialog() {
+        if (loading!!.isShowing)
+            loading!!.dismiss()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

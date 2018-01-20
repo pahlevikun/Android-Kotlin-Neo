@@ -1,12 +1,14 @@
 package fusion.neo.androidkotlinneo.presenter.implements
 
 import android.app.Activity
+import android.util.Log
 import com.beehapps.e_dokterkudokter.presenter.interfaces.LoginInterface
 import com.beehapps.e_dokterkudokter.presenter.interfaces.ServerCallback
 import com.beehapps.e_dokterkudokter.system.retrofit.BaseApiService
 import com.beehapps.e_dokterkudokter.system.retrofit.UtilsApi
 import com.beehapps.e_dokterkudokter.system.util.SessionManager
 import fusion.neo.androidkotlinneo.model.Login
+import fusion.neo.androidkotlinneo.sys.config.APIConfig
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -61,7 +63,7 @@ class LoginPresenter : LoginInterface {
                         if (response.isSuccessful) {
                             callback.onSuccess(response.body()!!.string())
                         }else{
-                            callback.onFailed(response.body()!!.string())
+                            callback.onFailed(response.errorBody()!!.string())
                         }
                     }
 

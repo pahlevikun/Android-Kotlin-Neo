@@ -67,7 +67,7 @@ class AddPhotoPresenter : AddPhotoInterface {
                         if (response.isSuccessful) {
                             callback.onSuccess(response.body()!!.string())
                         } else {
-                            callback.onFailed(response.body()!!.string())
+                            callback.onFailed(response.errorBody()!!.string())
                         }
                     }
 

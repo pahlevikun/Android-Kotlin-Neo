@@ -24,6 +24,8 @@ class MainPresenter : MainInterface {
                     override fun onResponse(call: Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
                         if (response.isSuccessful) {
                             callback.onSuccess(response.body()!!.string())
+                        }else {
+                            callback.onFailed(response.errorBody()!!.string())
                         }
                     }
 

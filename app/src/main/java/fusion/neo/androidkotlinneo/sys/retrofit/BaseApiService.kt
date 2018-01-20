@@ -20,6 +20,11 @@ interface BaseApiService {
     @GET(APIConfig.DATA)
     fun getList(@Header("Access-Token") token: String): Call<ResponseBody>
 
+
+    @GET(APIConfig.DATA + "/{id}")
+    fun getDetail(@Header("Access-Token") token: String,
+                  @Path("id") id: String): Call<ResponseBody>
+
     @Multipart
     @POST(APIConfig.DATA + APIConfig.POST_IMAGE)
     fun postPhoto(@Header("Access-Token") token: String,

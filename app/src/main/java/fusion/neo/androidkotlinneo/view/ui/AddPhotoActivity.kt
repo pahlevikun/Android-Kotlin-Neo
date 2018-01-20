@@ -36,7 +36,7 @@ class AddPhotoActivity : AppCompatActivity() {
         setSupportActionBar(toolbarAdd)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeButtonEnabled(true)
-        toolbarAdd.title = getString(R.string.app_name)
+        toolbarAdd.title = getString(R.string.app_post)
         toolbarAdd.setTitleTextColor(resources.getColor(R.color.colorText2))
 
         imageViewAdd.setOnClickListener {

@@ -1,13 +1,16 @@
 package fusion.neo.androidkotlinneo.view.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import fusion.neo.androidkotlinneo.R
 import fusion.neo.androidkotlinneo.model.DataHome
+import fusion.neo.androidkotlinneo.view.ui.DetailActivity
 import kotlinx.android.synthetic.main.adapter_item_main.view.*
 
 
@@ -28,7 +31,9 @@ class MainAdapter(private val context: Context, private val arrayData: ArrayList
         viewHolder.itemView.textViewAdapter!!.text = arrayData[i].summary
         Picasso.with(context).load(arrayData[i].image).into(viewHolder.itemView.imageViewAdapter)
         viewHolder.itemView.linearAdapter!!.setOnClickListener {
-
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(context.getString(R.string.intentExtraIdMessage),arrayData[i].id)
+            context.startActivity(intent)
         }
     }
 
@@ -37,7 +42,7 @@ class MainAdapter(private val context: Context, private val arrayData: ArrayList
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        init {
+        init{
             itemView.textViewAdapter
             itemView.imageViewAdapter
             itemView.linearAdapter

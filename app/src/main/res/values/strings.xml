@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Android Kotlin Neo</string>
+    <string name="app_post">Post Image</string>
+    <string name="app_view">Detail</string>
 
     <string name="app_add_photo_text">Select image and press upload</string>
     <string name="app_add_photo_button">Upload</string>
+
+    <string name="intentExtraIdMessage">intentExtraIdMessage</string>
 
     <string name="sharedAccount">sharedAccount</string>
     <string name="accountSession">accountSession</string>

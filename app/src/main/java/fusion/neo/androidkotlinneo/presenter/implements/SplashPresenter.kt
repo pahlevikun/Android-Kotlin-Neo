@@ -20,13 +20,13 @@ import fusion.neo.androidkotlinneo.view.ui.MainActivity
  */
 class SplashPresenter : SplashInterface {
 
-    override fun checkPermission(activity: Activity, permissions: Array<String>) {
+    override fun checkPermission(activity: Activity, arrayPermissions: Array<String>) {
         if (Build.VERSION.SDK_INT >= 23) {
             Log.d(APIConfig.TAG, "IN IF Build.VERSION.SDK_INT >= 23")
 
-            if (!hasPermissions(activity, *permissions)) {
+            if (!hasPermissions(activity, *arrayPermissions)) {
                 Log.d(APIConfig.TAG, "IN IF hasPermissions")
-                ActivityCompat.requestPermissions(activity, permissions, APIConfig.REQUEST_PERMISSION)
+                ActivityCompat.requestPermissions(activity, arrayPermissions, APIConfig.REQUEST_PERMISSION)
             } else {
                 Log.d(APIConfig.TAG, "IN ELSE hasPermissions")
                 splashLanding(activity)

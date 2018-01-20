@@ -16,6 +16,7 @@
     <string name="toast_login_failed_session">Failed Saving Session, Please Try Again!</string>
     <string name="toast_login_connection">Please check connection!</string>
     <string name="toast_upload_photo">Please fill correctly!</string>
+    <string name="toast_upload_photo_failed">Failed upload photo!</string>
 
     <string name="dialog_warning">Warning!</string>
     <string name="dialog_permission">Please give permission for Wifi Tester Monitor!</string>

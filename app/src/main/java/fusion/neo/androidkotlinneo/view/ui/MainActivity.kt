@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package fusion.neo.androidkotlinneo.view.ui
 
 import android.content.Intent
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setHomeButtonEnabled(false)
         toolbar.title = getString(R.string.app_name)
-        toolbar.setTitleTextColor(resources.getColor(R.color.colorText3))
+        toolbar.setTitleTextColor(resources.getColor(R.color.colorText2))
     }
 
     override fun onBackPressed() {

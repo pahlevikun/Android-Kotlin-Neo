@@ -13,14 +13,15 @@ import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
+import java.io.File
 
 /**
  * Created by farhan on 1/20/18.
  */
 class AddPhotoPresenter : AddPhotoInterface {
 
-    override fun getRealPathFromURIPath(activity: Activity, contentURI: Uri): String {
-        val cursor = activity.contentResolver.query(contentURI, null, null,
+    override fun getRealPathFromURIPath(context: Activity, contentURI: Uri): String {
+        val cursor = context.contentResolver.query(contentURI, null, null,
                 null, null)
         return if (cursor == null) {
             contentURI.path
@@ -31,8 +32,8 @@ class AddPhotoPresenter : AddPhotoInterface {
         }
     }
 
-    override fun isEmpty(file: MultipartBody.Part, summary: String, detail: String): Boolean {
-        return (file.toString().isEmpty()||detail.isEmpty() || summary.isEmpty())
+    override fun isEmpty(file: File, summary: String, detail: String): Boolean {
+        return (file.length() < 1 || detail.isEmpty() || summary.isEmpty())
     }
 
     override fun updatePhoto(context: Activity, data: Detail, id: String, callback: ServerCallback) {
@@ -44,7 +45,7 @@ class AddPhotoPresenter : AddPhotoInterface {
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
                         if (response.isSuccessful) {
-                            callback.onSuccess(response.toString())
+                            callback.onSuccess(response.body()!!.string())
                         } else {
                             callback.onFailed(true)
                         }

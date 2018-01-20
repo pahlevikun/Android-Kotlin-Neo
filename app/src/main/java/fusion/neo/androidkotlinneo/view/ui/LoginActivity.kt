@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package fusion.neo.androidkotlinneo.view.ui
 
 import android.app.ProgressDialog
@@ -12,7 +14,6 @@ import fusion.neo.androidkotlinneo.R
 import fusion.neo.androidkotlinneo.presenter.implements.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 
-@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
 
     private var username: String? = null

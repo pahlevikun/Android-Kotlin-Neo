@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadData() {
         val sessionManager = SessionManager(this@MainActivity)
         loading = ProgressDialog.show(this, getString(R.string.progress_loading),
-                getString(R.string.progress_updata), false, false)
+                getString(R.string.progress_getting), false, false)
         presenter.getData(this, sessionManager.accessToken, object : ServerCallback {
             override fun onSuccess(response: String) {
                 hideDialog()

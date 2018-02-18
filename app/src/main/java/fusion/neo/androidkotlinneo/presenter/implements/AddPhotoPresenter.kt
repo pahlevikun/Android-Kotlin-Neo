@@ -15,9 +15,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import java.io.File
 
-/**
- * Created by farhan on 1/20/18.
- */
 class AddPhotoPresenter : AddPhotoInterface {
 
     override fun getRealPathFromURIPath(context: Activity, contentURI: Uri): String {
